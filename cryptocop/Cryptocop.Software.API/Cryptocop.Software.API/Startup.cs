@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
 using Cryptocop.Software.API.Mappings;
 using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Services.Implementations;
@@ -16,6 +15,7 @@ using Cryptocop.Software.API.Repositories.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Cryptocop.Software.API.Middlewares;
 using Cryptocop.Software.API.Extensions;
+using AutoMapper;
 
 namespace Cryptocop.Software.API
 {

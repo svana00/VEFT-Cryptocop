@@ -1,4 +1,3 @@
-using Cryptocop.Software.API.Models.DTOs;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 

@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Cryptocop.Software.API.Services.Interfaces;
+using System.Linq;
+using System.Text;
 
 namespace Cryptocop.Software.API.Middlewares
 {

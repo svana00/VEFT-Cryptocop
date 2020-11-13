@@ -1,9 +1,6 @@
-using System;
 using AutoMapper;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.Entities;
-using Cryptocop.Software.API.Models.InputModels;
-using Newtonsoft.Json.Linq;
 
 namespace Cryptocop.Software.API.Mappings
 {
@@ -11,8 +8,6 @@ namespace Cryptocop.Software.API.Mappings
     {
         public MappingProfile()
         {
-            AllowNullCollections = true;
-            AllowNullDestinationValues = true;
             CreateMap<Address, AddressDto>()
                 .ForSourceMember(x => x.UserId, opt => opt.DoNotValidate());
             CreateMap<Order, OrderDto>()

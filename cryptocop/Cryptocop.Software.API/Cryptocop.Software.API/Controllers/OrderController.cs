@@ -2,7 +2,6 @@
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using System.Linq;
 
 namespace Cryptocop.Software.API.Controllers
 {

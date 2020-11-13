@@ -3,9 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System;
-using Cryptocop.Software.API.Services.Helpers;
 using System.Text;
-using Newtonsoft.Json.Serialization;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {

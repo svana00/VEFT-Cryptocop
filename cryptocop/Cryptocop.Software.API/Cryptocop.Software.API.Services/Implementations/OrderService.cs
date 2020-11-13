@@ -3,9 +3,7 @@ using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Services.Interfaces;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.InputModels;
-using RabbitMQ.Client;
 using Microsoft.Extensions.Configuration;
-using System;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {

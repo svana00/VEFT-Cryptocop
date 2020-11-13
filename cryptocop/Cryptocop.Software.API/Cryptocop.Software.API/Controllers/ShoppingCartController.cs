@@ -3,7 +3,6 @@ using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
-using System;
 
 namespace Cryptocop.Software.API.Controllers
 {

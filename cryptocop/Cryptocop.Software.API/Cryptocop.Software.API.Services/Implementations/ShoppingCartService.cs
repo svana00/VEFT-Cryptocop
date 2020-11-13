@@ -6,10 +6,8 @@ using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Services.Helpers;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.InputModels;
-using System;
-using System.Net;
 using System.Net.Http.Headers;
-using Newtonsoft.Json.Linq;
+using System;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {

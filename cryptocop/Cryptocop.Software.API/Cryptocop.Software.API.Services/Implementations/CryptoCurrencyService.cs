@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Cryptocop.Software.API.Services.Helpers;
+using Cryptocop.Software.API.Services.Interfaces;
+using Cryptocop.Software.API.Models.DTOs;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Cryptocop.Software.API.Services.Helpers;
-using Cryptocop.Software.API.Services.Interfaces;
-using Cryptocop.Software.API.Models.DTOs;
-using System;
 using System.Net.Http.Headers;
-using Newtonsoft.Json.Linq;
+using System;
 using AutoMapper;
 
 namespace Cryptocop.Software.API.Services.Implementations

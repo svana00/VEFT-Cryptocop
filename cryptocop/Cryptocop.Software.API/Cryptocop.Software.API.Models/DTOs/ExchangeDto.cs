@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace Cryptocop.Software.API.Models.DTOs

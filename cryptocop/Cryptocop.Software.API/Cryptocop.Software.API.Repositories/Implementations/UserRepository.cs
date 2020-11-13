@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.Entities;
 using Cryptocop.Software.API.Repositories.Contexts;
+using System;
+using System.Linq;
 using System.Text;
-using System.Collections.Generic;
 
 namespace Cryptocop.Software.API.Repositories.Implementations
 {
