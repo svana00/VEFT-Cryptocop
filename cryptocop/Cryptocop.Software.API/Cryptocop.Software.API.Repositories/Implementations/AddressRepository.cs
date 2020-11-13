@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Cryptocop.Software.API.Repositories.Interfaces;
+﻿using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.Exceptions;
 using Cryptocop.Software.API.Repositories.Contexts;
-using System.Linq;
-using System;
 using Cryptocop.Software.API.Models.Entities;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 
 namespace Cryptocop.Software.API.Repositories.Implementations
@@ -25,7 +24,6 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         public void AddAddress(string email, AddressInputModel address)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
-            if (user == null) { throw new Exception("User from not found."); }
 
             var newAddress = new Address
             {
@@ -43,7 +41,6 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         public IEnumerable<AddressDto> GetAllAddresses(string email)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
-            if (user == null) { throw new ResourceNotFoundException($"User not found."); };
             var addresses = _mapper.Map<IEnumerable<AddressDto>>(_dbContext.Addresses.Where(a => a.UserId == user.Id));
             return addresses;
         }
@@ -52,10 +49,6 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         {
             // Find the user
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
-            if (user == null)
-            {
-                throw new Exception("User not found.");
-            };
 
             var address = _dbContext.Addresses.FirstOrDefault(a => a.Id == addressId && a.UserId == user.Id);
             if (address == null)

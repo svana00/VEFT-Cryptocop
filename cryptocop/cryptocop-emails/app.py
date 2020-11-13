@@ -44,7 +44,7 @@ channel = connect_to_mb()
 # Configuration
 exchange_name = "cryptocop_exchange"
 create_order_routing_key = "create-order"
-order_email_queue_name = "email-queue"
+queue_name = "email-queue"
 introduction_template = "<h2>Thanks for you order!</h2><p>We hope you will enjoy our lovely products and don't hesitate to contact us if there are any questions.</p>"
 info_template = "<h3>Order details</h3>%s"
 items_table = '<table><thead><tr style="background-color: rgba(155, 155, 155, .2)"><th>Product Identifier</th><th>Quantity</th><th>Unit price</th><th>Total Price</th></tr></thead><tbody>%s</tbody></table>'
@@ -62,7 +62,7 @@ def setup_queue(exchange_name, queue_name, routing_key):
 # Declare the exchange, if it doesn't exist
 channel.exchange_declare(exchange=exchange_name, exchange_type="direct", durable=True)
 
-setup_queue(exchange_name, order_email_queue_name, create_order_routing_key)
+setup_queue(exchange_name, queue_name, create_order_routing_key)
 
 
 def send_simple_message(to, subject, body):
@@ -119,7 +119,7 @@ def send_order_email(ch, method, properties, data):
     send_ack(ch, method.delivery_tag, response.ok)
 
 
-channel.basic_consume(order_email_queue_name, send_order_email)
+channel.basic_consume(queue_name, send_order_email)
 
 
 channel.start_consuming()

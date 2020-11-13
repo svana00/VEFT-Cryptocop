@@ -50,7 +50,7 @@ namespace Cryptocop.Software.API.Services.Implementations
             }
             else
             {
-                throw new Exception("Request failed.");
+                throw new ApplicationException("Request failed to external API.");
             }
         }
     }

@@ -23,12 +23,14 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
         public UserDto CreateUser(RegisterInputModel register)
         {
+            // Check if user already exists
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == register.Email);
             if (user != null)
             {
                 throw new Exception("User already exists.");
             }
 
+            // Hash the password and create a new token
             var password = HashPassword(register.Password);
             var token = new JwtToken();
             _dbContext.JwtTokens.Add(token);

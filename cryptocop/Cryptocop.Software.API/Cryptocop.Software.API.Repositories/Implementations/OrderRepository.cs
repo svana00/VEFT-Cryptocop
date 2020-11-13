@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Cryptocop.Software.API.Repositories.Interfaces;
+﻿using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Repositories.Contexts;
 using Cryptocop.Software.API.Repositories.Helpers;
-using System.Linq;
-using AutoMapper;
 using Cryptocop.Software.API.Models.Entities;
 using Cryptocop.Software.API.Models.Exceptions;
+using System;
+using System.Linq;
+using AutoMapper;
+using System.Collections.Generic;
 
 namespace Cryptocop.Software.API.Repositories.Implementations
 {
@@ -29,8 +29,11 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
 
             var orders = _dbContext.Orders.Where(o => o.UserId == user.Id).ToList();
+
+            // Map orders to dto
             var ordersDto = _mapper.Map<IEnumerable<OrderDto>>(orders);
 
+            // Find orderItems and insert into dto
             foreach (var orderDto in ordersDto)
             {
                 var orderItems = _dbContext.OrderItems.Where(o => o.OrderId == orderDto.Id).ToList();
@@ -83,7 +86,10 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 totalPrice += cartItem.Quantity * cartItem.UnitPrice;
             }
 
+            // Mask the credit card with helper function
             var maskedCreditCard = PaymentCardHelper.MaskPaymentCard(paymentCard.CardNumber);
+
+            // Add the order to the database
             var newOrder = new Order
             {
                 UserId = user.Id,
@@ -102,7 +108,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             _dbContext.Orders.Add(newOrder);
             _dbContext.SaveChanges();
 
-            // Create order items for each cart item
+            // Map cart items to order items
             foreach (var cartItem in cartItems)
             {
                 var newOrderItem = new OrderItem
@@ -120,8 +126,10 @@ namespace Cryptocop.Software.API.Repositories.Implementations
 
             var orderItems = _dbContext.OrderItems.Where(o => o.OrderId == newOrder.Id).ToList();
 
+            // Map order items to dto
             var orderItemsDtoList = _mapper.Map<List<OrderItemDto>>(orderItems);
 
+            // Map order to dto and return
             var newOrderDto = new OrderDto
             {
                 Id = newOrder.Id,
