@@ -1,0 +1,20 @@
+// Setting up the network
+docker network create --driver bridge cryptocop-network
+
+// Run in api-gateway
+docker build -t veft/api-gateway .
+docker run --name api-gateway --network cryptocop-network veft/api-gateway
+
+// Run in payment-service
+docker build -t veft/payment-service .
+docker run --name payment-service --network cryptocop-network veft/payment-service 
+
+// Run in email-service
+docker build -t veft/email-service .
+docker run --name email-service --network cryptocop-network veft/email-service 
+
+// RabbitMq
+docker pull rabbitmq
+docker run --name message-broker --network cryptocop-network -e HOSTNAME=message-broker -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=pass -e RABBITMQ_VHOST=/ rabbitmq
+
+docker-compose up

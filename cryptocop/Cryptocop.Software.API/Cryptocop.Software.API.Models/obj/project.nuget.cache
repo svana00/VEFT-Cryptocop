@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "7ysWdM6vmg7nW1qephmyCI+5NspHMmRi/WqND1zeXCBxccpQ/DsFoDVBzDig0/t+LHn34F6amDVdgZZOcECZYg==",
+  "success": true,
+  "projectFilePath": "/Users/svana/Desktop/VEFT/Assignments/Final/cryptocop/Cryptocop.Software.API/Cryptocop.Software.API.Models/Cryptocop.Software.API.Models.csproj",
+  "expectedPackageFiles": [
+    "/Users/svana/.nuget/packages/newtonsoft.json/11.0.2/newtonsoft.json.11.0.2.nupkg.sha512",
+    "/Users/svana/.nuget/packages/system.componentmodel.annotations/4.7.0/system.componentmodel.annotations.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

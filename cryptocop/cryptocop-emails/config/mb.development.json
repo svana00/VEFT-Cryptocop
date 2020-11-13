@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "virtualhost": "/",
+    "user": "guest",
+    "password": "guest"
+}

@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "7748c6c6-3aa8-4f38-a3d8-8b62b53e81c5",
+		"name": "Cryptocop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2096b129-d835-4538-ad75-bb007fc50d34",
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{user.email}}\",\r\n    \"fullName\": \"{{user.fullName}}\",\r\n    \"password\": \"{{user.password}}\",\r\n    \"passwordConfirmation\": \"{{user.password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/account/register",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"account",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7558a144-bec3-4fa4-a825-fe18853b645f",
+						"exec": [
+							"pm.environment.set(\"jwt\", pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{user.email}}\",\r\n    \"password\": \"{{user.password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/account/login",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"account",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cryptocurrencies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseAddress}}/cryptocurrencies",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cryptocurrencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add BTC to cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productIdentifier\": \"btc\",\r\n    \"quantity\": 0.55\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/cart/items",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cart",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add ETH to cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productIdentifier\": \"eth\",\r\n    \"quantity\": 0.92\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/cart/items",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cart",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cart items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/cart/items",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cart",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update cart item",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"quantity\": 0.41\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/cart/items/1",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cart",
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete cart item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/cart/items/1",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cart",
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear cart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/cart",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get exchanges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/exchanges",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"exchanges"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get addresses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/user/addresses",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"user",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"streetName\": \"Menntavegur\",\r\n    \"houseNumber\": \"1\",\r\n    \"zipCode\": \"101\",\r\n    \"country\": \"is\",\r\n    \"city\": \"Reykjavík\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/user/addresses",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"user",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete address",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/user/addresses/1",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"user",
+						"addresses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stored payment methods",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/payments",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new payment card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cardHolderName\": \"{{cardholder.name}}\",\r\n    \"cardNumber\": \"{{cardholder.cc}}\",\r\n    \"month\": {{cardholder.expmonth}},\r\n    \"year\": {{cardholder.expyear}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/payments",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"addressId\": 1,\r\n    \"paymentCardId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseAddress}}/orders",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseAddress}}/orders",
+					"host": [
+						"{{baseAddress}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{webapiport}}",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}
