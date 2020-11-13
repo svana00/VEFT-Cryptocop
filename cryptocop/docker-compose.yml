@@ -6,7 +6,7 @@ services:
         build: ./Cryptocop.Software.API
         container_name: api-gateway
         ports:
-            - "5001:5001"
+            - "80:5001"
         networks:
             - "cryptocop-network"
 

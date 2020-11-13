@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Cryptocop.Software.API.Mappings;
 using Cryptocop.Software.API.Services.Interfaces;
+using Cryptocop.Software.API.Repositories.Helpers;
 using Cryptocop.Software.API.Services.Implementations;
 using Cryptocop.Software.API.Repositories.Interfaces;
 using Cryptocop.Software.API.Repositories.Implementations;

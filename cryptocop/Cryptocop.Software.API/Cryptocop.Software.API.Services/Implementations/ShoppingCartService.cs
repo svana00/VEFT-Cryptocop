@@ -8,6 +8,7 @@ using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.InputModels;
 using System.Net.Http.Headers;
 using System;
+using Cryptocop.Software.API.Models.Exceptions;
 
 namespace Cryptocop.Software.API.Services.Implementations
 {
@@ -27,8 +28,14 @@ namespace Cryptocop.Software.API.Services.Implementations
 
         public async Task AddCartItem(string email, ShoppingCartItemInputModel shoppingCartItem)
         {
+            var identifier = shoppingCartItem.ProductIdentifier;
+            if (identifier.ToUpper() != "BTC" && identifier.ToUpper() != "ETH" && identifier.ToUpper() != "USDT" && identifier.ToUpper() != "XMR")
+            {
+                throw new ResourceNotFoundException("Invalid product identifier.");
+            }
+
             // Call the external API using the product identifier as an URL parameter to
-            string URL = "https://data.messari.io/api/v1/assets/BTC/metrics";
+            string URL = "https://data.messari.io/api/v1/assets/" + shoppingCartItem.ProductIdentifier + "/metrics";
             string urlParameters = "?fields=id,symbol,name,slug,market_data/price_usd";
 
             HttpClient client = new HttpClient();
@@ -36,7 +43,8 @@ namespace Cryptocop.Software.API.Services.Implementations
 
             // Add an Accept header for JSON format.
             client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
 
             // List data response.
             var response = await client.GetAsync(urlParameters);

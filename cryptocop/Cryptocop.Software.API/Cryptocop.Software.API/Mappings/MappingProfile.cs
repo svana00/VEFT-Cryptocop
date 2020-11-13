@@ -1,6 +1,7 @@
 using AutoMapper;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.Entities;
+using Cryptocop.Software.API.Repositories.Helpers;
 
 namespace Cryptocop.Software.API.Mappings
 {
@@ -18,7 +19,8 @@ namespace Cryptocop.Software.API.Mappings
                 .ForSourceMember(o => o.OrderId, y => y.DoNotValidate())
                 .ForSourceMember(o => o.Order, y => y.DoNotValidate());
             CreateMap<PaymentCard, PaymentCardDto>()
-                .ForSourceMember(p => p.UserId, opt => opt.DoNotValidate());
+                .ForSourceMember(p => p.UserId, opt => opt.DoNotValidate())
+                .ForMember(o => o.CardNumber, opt => opt.MapFrom(src => PaymentCardHelper.MaskPaymentCard(src.CardNumber)));
             CreateMap<ShoppingCartItem, ShoppingCartItemDto>()
                 .ForMember(c => c.TotalPrice, src => src.MapFrom(src => src.UnitPrice * src.Quantity))
                 .ForSourceMember(c => c.ShoppingCartId, opt => opt.DoNotValidate());
