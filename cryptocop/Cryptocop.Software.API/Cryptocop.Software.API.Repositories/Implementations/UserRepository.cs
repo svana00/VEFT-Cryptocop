@@ -4,6 +4,7 @@ using Cryptocop.Software.API.Models.InputModels;
 using Cryptocop.Software.API.Models.DTOs;
 using Cryptocop.Software.API.Models.Entities;
 using Cryptocop.Software.API.Repositories.Contexts;
+using Cryptocop.Software.API.Repositories.Helpers;
 using System;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,6 @@ namespace Cryptocop.Software.API.Repositories.Implementations
     public class UserRepository : IUserRepository
     {
         private readonly CryptocopDbContext _dbContext;
-        private string _salt = "00209b47-08d7-475d-a0fb-20abf0872ba0";
-
         public UserRepository(CryptocopDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -30,7 +29,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
             }
 
             // Hash the password and create a new token
-            var password = HashPassword(register.Password);
+            var password = HashingHelper.HashPassword(register.Password);
             var token = new JwtToken();
             _dbContext.JwtTokens.Add(token);
             _dbContext.SaveChanges();
@@ -59,7 +58,7 @@ namespace Cryptocop.Software.API.Repositories.Implementations
         {
             var user = _dbContext.Users.FirstOrDefault(u =>
                 u.Email == login.Email &&
-                u.HashedPassword == HashPassword(login.Password));
+                u.HashedPassword == HashingHelper.HashPassword(login.Password));
             if (user == null) { return null; }
 
             var token = new JwtToken();
@@ -74,18 +73,5 @@ namespace Cryptocop.Software.API.Repositories.Implementations
                 TokenId = token.Id
             };
         }
-
-        private string HashPassword(string password)
-        {
-            return Convert.ToBase64String(KeyDerivation.Pbkdf2(
-            password: password,
-            salt: CreateSalt(),
-            prf: KeyDerivationPrf.HMACSHA1,
-            iterationCount: 10000,
-            numBytesRequested: 256 / 8));
-        }
-
-        private byte[] CreateSalt() =>
-            Convert.FromBase64String(Convert.ToBase64String(Encoding.UTF8.GetBytes(_salt)));
     }
 }

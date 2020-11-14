@@ -36,7 +36,7 @@ namespace Cryptocop.Software.API.Controllers
             }
 
             _paymentService.AddPaymentCard(User.Identity.Name, paymentCard);
-            return StatusCode(201, "Payment cart has been added.");
+            return StatusCode(201, "Payment card has been added.");
         }
     }
 }

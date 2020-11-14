@@ -6,7 +6,7 @@ namespace Cryptocop.Software.API.Repositories.Helpers
 {
     public static class HashingHelper
     {
-        private static string _salt = "<insert-some-salt-here>";
+        private static string _salt = "00209b47-08d7-475d-a0fb-20abf0872ba0";
         public static string HashPassword(string password)
         {
             return Convert.ToBase64String(KeyDerivation.Pbkdf2(
